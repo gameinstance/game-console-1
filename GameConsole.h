@@ -43,7 +43,7 @@ class GameConsole {
     int GetAxis(byte axis);
     /// the loop method
     void Loop();
-    /// the game state machine
+    /// the game state machine 
     virtual void Execute() = 0;
 
     /// the center points
