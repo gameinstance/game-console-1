@@ -32,7 +32,7 @@ void GameConsole::Setup() {
 }
 
 void GameConsole::ClearDisplay() {
-	//
+	// 
 	m_lcd.Fill(false);
 	m_lcd.Line(0, 0, WIDTH - 1, 0, true);
 	m_lcd.Line(0, 0, 0, HEIGHT - 1, true);
