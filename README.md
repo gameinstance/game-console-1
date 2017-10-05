@@ -4,7 +4,7 @@ https://www.gameinstance.com/post/48/Game-Console-on-Arduino <br />
 
 Here's an example on how to use the GameConsole class.<br />
 
-//--------------------------------
+```C++
 #include <GameConsole.h>
 
 
@@ -89,3 +89,4 @@ void loop() {
   // put your main code here, to run repeatedly:
   game.Loop();
 }
+```
