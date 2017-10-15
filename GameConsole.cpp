@@ -1,5 +1,45 @@
 #include <Arduino.h>
+#include <EEPROM.h>
 #include <GameConsole.h>
+
+
+Storage::Storage() : m_gameIndex(0) {
+    // 
+}
+
+Storage::~Storage() {
+	// 
+}
+
+void Storage::Init(unsigned char gameIndex) {
+    // 
+    m_gameIndex = gameIndex;
+}
+
+unsigned int Storage::GetScore() {
+    // 
+    if (m_gameIndex == 0) {
+        // 
+        return 0;
+    }
+    // 
+    unsigned char highByte = EEPROM.read(m_gameIndex * STORAGE_CHUNK_SIZE + 0);
+    unsigned char lowByte = EEPROM.read(m_gameIndex * STORAGE_CHUNK_SIZE + 1);
+    return (highByte << 8) + lowByte;
+}
+
+void Storage::SetScore(unsigned int value) {
+    // 
+    if (m_gameIndex == 0) {
+        // 
+        return;
+    }
+    // 
+    unsigned char lowByte = (value & 0xFF);
+    unsigned char highByte = ((value >> 8) & 0xFF);
+    EEPROM.write(m_gameIndex * STORAGE_CHUNK_SIZE + 0, highByte);
+    EEPROM.write(m_gameIndex * STORAGE_CHUNK_SIZE + 1, lowByte);
+}
 
 GameConsole::GameConsole() {
 	// 
@@ -12,7 +52,7 @@ GameConsole::~GameConsole() {
 
 void GameConsole::Setup() {
 	// 
-	for (byte i = 0; i < BUTTON_COUNT; i ++) {
+	for (unsigned char i = 0; i < BUTTON_COUNT; i ++) {
 		// 
 		m_bPress[i] = false;
 	}
@@ -28,11 +68,12 @@ void GameConsole::Setup() {
 	m_lcd.Update();
 	m_centerX = analogRead(A2);
 	m_centerY = analogRead(A1);
+    m_storage.Init(GameIndex());
 	delay(1000);
 }
 
 void GameConsole::ClearDisplay() {
-	// 
+	//
 	m_lcd.Fill(false);
 	m_lcd.Line(0, 0, WIDTH - 1, 0, true);
 	m_lcd.Line(0, 0, 0, HEIGHT - 1, true);
@@ -40,10 +81,10 @@ void GameConsole::ClearDisplay() {
 	m_lcd.Line(WIDTH - 1, HEIGHT - 1, 0, HEIGHT - 1, true);
 }
 
-bool GameConsole::WasPressed(byte button) {
+bool GameConsole::WasPressed(unsigned char button) {
 	//
-	byte index = ButtonIndex(button);
-	if (LOW == digitalRead(button)) {
+	unsigned char index = ButtonIndex(button);
+	if (HIGH == digitalRead(button)) {
 		// isn't pressed
 		if (m_bPress[index]) {
 			// but was before
@@ -61,12 +102,12 @@ bool GameConsole::WasPressed(byte button) {
 	return false;
 }
 
-bool GameConsole::IsPressed(byte button) {
+bool GameConsole::IsPressed(unsigned char button) {
 	// 
 	return (LOW == digitalRead(button));
 }
 
-int GameConsole::GetAxis(byte axis) {
+int GameConsole::GetAxis(unsigned char axis) {
 	// 
 	return analogRead(axis) - (AXIS_X == axis ? m_centerX : m_centerY);
 }
@@ -76,7 +117,7 @@ void GameConsole::Loop() {
     Execute();
 }
 
-byte GameConsole::ButtonIndex(byte button) {
+unsigned char GameConsole::ButtonIndex(unsigned char button) {
 	//
 	switch (button) {
 		// 
