@@ -14,6 +14,11 @@ class Calibration : public GameConsole {
     virtual ~Calibration() {
       //
     };
+    /// the application index
+    unsigned char GameIndex() {
+      // 
+      return 2;
+    }
     /// the main method implementation
     void Execute() {
       //
