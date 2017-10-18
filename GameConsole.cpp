@@ -50,6 +50,11 @@ GameConsole::~GameConsole() {
 	// 
 }
 
+unsigned char GameConsole::GameIndex() {
+	// 
+	return 0;
+}
+
 void GameConsole::Setup() {
 	// 
 	for (unsigned char i = 0; i < BUTTON_COUNT; i ++) {
@@ -68,7 +73,7 @@ void GameConsole::Setup() {
 	m_lcd.Update();
 	m_centerX = analogRead(A2);
 	m_centerY = analogRead(A1);
-    m_storage.Init(GameIndex());
+        m_storage.Init(GameIndex());
 	delay(1000);
 }
 
