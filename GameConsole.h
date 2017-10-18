@@ -83,7 +83,7 @@ class GameConsole {
     /// the game state machine
     virtual void Execute() = 0;
     /// the game index
-    virtual unsigned char GameIndex() = 0;
+    virtual unsigned char GameIndex();
 
     /// the center points
     int m_centerX, m_centerY;
