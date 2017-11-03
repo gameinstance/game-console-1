@@ -2,6 +2,9 @@
 
 Details on: https://www.gameinstance.com/post/49/Space-Invaders-game <br />
 
+# Maze Explorer game on Arduino Game Console
+
+Details on: https://www.gameinstance.com/post/51/Maze-Explorer-game <br />
 
 # Game Console on Arduino 
 
