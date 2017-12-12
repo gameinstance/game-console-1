@@ -1,3 +1,11 @@
+/*
+ * Arduino Game Console API
+ * https://www.gameinstance.com/post/48/Game-Console-on-Arduino
+ *
+ * GameInstance.com
+ * 2017
+ */
+
 #include <Arduino.h>
 #include <EEPROM.h>
 #include <GameConsole.h>
