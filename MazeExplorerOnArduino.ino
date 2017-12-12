@@ -1,3 +1,11 @@
+/*
+ * Maze Explorer for the Arduino Game Console
+ * https://www.gameinstance.com/post/51/Maze-Explorer-game
+ *
+ * GameInstance.com
+ * 2017
+ */
+
 #include <GameConsole.h>
 
 struct Point {
