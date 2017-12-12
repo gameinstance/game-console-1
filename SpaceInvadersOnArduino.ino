@@ -1,3 +1,11 @@
+/*
+ * Space Invaders for the Arduino Game Console
+ * https://www.gameinstance.com/post/49/Space-Invaders-game
+ *
+ * GameInstance.com
+ * 2017
+ */
+
 #include <GameConsole.h>
 
 struct Point {
