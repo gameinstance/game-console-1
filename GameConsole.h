@@ -8,13 +8,13 @@
 
 #include <Arduino.h>
 #include <SPI.h>
-#include <LCDNokia5100.h>
+#include <LCDNokia5110.h>
 
 
 /*
  * A simple alias for the display class.
  */
-typedef LCDNokia5100 Display;
+typedef LCDNokia5110 Display;
 
 
 /*
